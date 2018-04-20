@@ -14,7 +14,7 @@ import bokeh.palettes as palettes
 output_notebook()
 import matplotlib as mpl
 
-def scatter_mol(df):
+def scatter_mol(df, x: str, y: str) :
     """
     Makes an interactive scatter plot with  
     """
@@ -23,7 +23,7 @@ def scatter_mol(df):
         img_path = []
         img_dir = "imgs/" 
         
-        if not os.path.exists(img_dir):  #  Checks if folder exists then creates it
+        if not os.path.exists(img_dir):  # Checks if folder exists then creates it
             os.makedirs(img_dir)
             
         for mol in range(len(mol_df)):
@@ -66,6 +66,6 @@ def scatter_mol(df):
     colors = [colormap[x] for x in source.data["activity"]]
     TOOLS=[hover, CrosshairTool(), WheelZoomTool(), ResetTool(), PanTool()]
     p = figure(plot_width=800, plot_height=800,title="PCA Morgan FPS", tools=TOOLS)
-    p.scatter(x='comp1',y= 'comp2', size=5, alpha = 0.9, color='colors', source=source)
+    p.scatter(x=x,y= y, size=5, alpha = 0.9, color='colors', source=source)
     #output_file("test_mol.html")
     show(p)
